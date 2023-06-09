@@ -14,7 +14,7 @@ class PermissionPolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['super-admin', 'admin', 'moderator']);
+        return $user->hasAnyRole(['super-admin', 'admin' , 'client' ]);
     }
 
     /**

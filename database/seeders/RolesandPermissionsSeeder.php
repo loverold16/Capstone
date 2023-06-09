@@ -18,7 +18,8 @@ class RolesAndPermissionsSeeder extends Seeder
      *
      * @return void
      */
-    public function run() {
+    public function run()
+    {
         // reset cached roles and permissions
         app()[\Spatie\Permission\PermissionRegistrar::class]->forgetCachedPermissions();
 
@@ -86,7 +87,7 @@ class RolesAndPermissionsSeeder extends Seeder
             $adminPermission2,
             $userPermission1,
         ]);
-        $moderatorRole = Role::create(['name' => 'moderator'])->syncPermissions([
+        $clientRole = Role::create(['name' => 'client'])->syncPermissions([
             $userPermission2,
             $rolePermission2,
             $permission2,
@@ -116,13 +117,13 @@ class RolesAndPermissionsSeeder extends Seeder
         ])->assignRole($adminRole);
 
         User::create([
-            'name' => 'moderator',
+            'name' => 'client',
             'is_admin' => 1,
-            'email' => 'moderator@admin.com',
+            'email' => 'client@admin.com',
             'email_verified_at' => now(),
             'password' => Hash::make('password'),
             'remember_token' => Str::random(10),
-        ])->assignRole($moderatorRole);
+        ])->assignRole($clientRole);
 
         User::create([
             'name' => 'developer',
@@ -133,11 +134,13 @@ class RolesAndPermissionsSeeder extends Seeder
             'remember_token' => Str::random(10),
         ])->assignRole($developerRole);
 
-        for ($i=1; $i < 50; $i++) {
+
+        for ($i = 1; $i < 10; $i++) {
+            //Job Seekers = users
             User::create([
-                'name' => 'Test '.$i,
+                'name' => 'Test ' . $i,
                 'is_admin' => 0,
-                'email' => 'test'.$i.'@test.com',
+                'email' => 'User' . $i . '@user.com',
                 'email_verified_at' => now(),
                 'password' => Hash::make('password'), // password
                 'remember_token' => Str::random(10),

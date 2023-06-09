@@ -13,7 +13,7 @@ class RolePolicy
      */
     public function viewAny(User $user): bool
     {
-        return $user->hasAnyRole(['super-admin', 'admin', 'moderator', 'developer']);
+        return $user->hasAnyRole(['super-admin', 'admin', 'client']);
     }
 
     /**
