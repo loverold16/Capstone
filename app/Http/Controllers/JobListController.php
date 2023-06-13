@@ -15,34 +15,34 @@ class JobListController extends Controller
     {
         $categories = Category::all();
         if (request()->category) {
-            if (!request()->sort) {
-                $jobs = Job::whereHas('categories', function ($query) {
-                    $query->where('slug', request()->category);
-                })->inRandomOrder()->get(['name', 'slug', 'price', 'image']);
-                $categoryName = optional($categories->where('slug', request()->category)->first())->name;
-                $categorySlug = $categories->where('slug', request()->category)->first()->slug;
+            $jobs = Job::whereHas('categories', function ($query) {
+                $query->where('slug', request()->category);
+            });
+
+            $categoryName = optional($categories->where('slug', request()->category)->first())->name; //? Breadcrumbs
+            $categorySlug = $categories->where('slug', request()->category)->first()->slug;
+
+            if (request()->sort == 'low_high') {
+                $jobs = $jobs->orderBy('price');
             } else {
-                $jobs = Job::whereHas('categories', function ($query) {
-                    $query->where('slug', request()->category);
-                });
-                $categoryName = optional($categories->where('slug', request()->category)->first())->name;
-                $categorySlug = $categories->where('slug', request()->category)->first()->slug;
-                if (request()->sort == 'low_high') {
-                    $jobs = $jobs->orderBy('price')->get(['name', 'slug', 'price', 'image']);
-                } else {
-                    $jobs = $jobs->orderBy('price', 'desc')->get(['name', 'slug', 'price', 'image']);
-                }
+                $jobs = $jobs->orderBy('price', 'desc');
             }
+
+            $jobs = $jobs->get(['name', 'slug', 'price', 'image']);
         } else {
+            //! Display All jobs if no Category is selected
             $jobs = Job::inRandomOrder()->get(['name', 'slug', 'price', 'image']);
             $categoryName = 'All';
             $categorySlug = NULL;
         }
+
+        $metatitle = $categoryName;
         return view('jobs/index', compact(
             'jobs',
             'categories',
             'categoryName',
             'categorySlug',
+            'metatitle',
         ));
     }
 
@@ -67,14 +67,8 @@ class JobListController extends Controller
      */
     public function show(Job $job)
     {
-        $categories = $job->categories;
-        foreach ($categories as $category) {
-            $similarJobs = $category->jobs->shuffle()->take(4);
-        }
-        return view('jobs/index', compact(
-            'job',
-            'similarJobs',
-        ));
+        $metatitle = $job->name;
+        return view('jobs/show', compact( 'job' , 'metatitle'));
     }
 
     /**

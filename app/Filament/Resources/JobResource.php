@@ -43,6 +43,8 @@ class JobResource extends Resource
                     })
                     ->autofocus()
                     ->required(),
+                Forms\Components\Toggle::make('is_featured')
+                    ->required(),
                 Forms\Components\TextInput::make('slug')
                     ->disabled()
                     ->required(),
@@ -65,6 +67,7 @@ class JobResource extends Resource
             ->columns([
                 Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')->sortable(),
+                Tables\Columns\IconColumn::make('is_featured')->sortable()->searchable()->boolean(),
                 Tables\Columns\TextColumn::make('slug'),
                 Tables\Columns\TextColumn::make('price')
                     ->sortable(),

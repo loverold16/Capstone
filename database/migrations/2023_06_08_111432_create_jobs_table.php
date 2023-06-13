@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');  //job-details including id in the URL
+            $table->integer('is_featured')->default(0);  
             $table->string('details');
             $table->unsignedbiginteger('price');
             $table->string('job_code');

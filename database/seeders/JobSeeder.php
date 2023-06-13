@@ -21,6 +21,7 @@ class JobSeeder extends Seeder
             Job::create([
                 'name' => "Computer Job" . $i,
                 'slug' => "comjob-"  . $i,
+                'is_featured' => 0,
                 'details' => "IT details",
                 'price' => rand(99, 999),
                 'job_code' => $category->category_code . "00" . $i,
@@ -33,6 +34,7 @@ class JobSeeder extends Seeder
             Job::create([
                 'name' => "BPO Job" . $i,
                 'slug' => "bpojob-"  . $i,
+                'is_featured' => 0,
                 'details' => "BPO details",
                 'price' => rand(99, 999),
                 'job_code' => $category->category_code . "00" . $i,

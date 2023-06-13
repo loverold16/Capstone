@@ -7,8 +7,8 @@
             </h1>
             <div class="flex flex-center gap-2">
                     @foreach ($categoryList as $category)
-                        <x-button class="text-3xl text-gray-800 font-bold leading-none mb-3">{{ $category->name }}
-                        </x-button>
+                        <a href="{{ route('jobs.index', 'category=' . $category->slug) }}" class="text-3xl text-gray-800 font-bold leading-none mb-3">{{ $category->name }}
+                        </a>
                     @endforeach
             </div>
         </div>

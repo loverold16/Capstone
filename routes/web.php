@@ -19,6 +19,9 @@ Route::get('/', [WelcomeController::class, 'index'])->name('welcome');
 
 //JobListing Page
 Route::get('/jobs', [JobListController::class, 'index'])->name('jobs.index');
+//Job Details  Page
+//! slug = link of the job name
+Route::get('/jobs/{job:slug}', [JobListController::class, 'show'])->name('jobs.show');
 
 Route::middleware([
     'auth:sanctum',

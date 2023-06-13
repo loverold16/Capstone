@@ -40,7 +40,14 @@ class WelcomeController extends Controller
      */
     public function show(Job $job)
     {
-        //
+        $categories = $job->categories;
+        foreach ($categories as $category) {
+            $similarJobs = $category->jobs->shuffle()->take(4);
+        }
+        return view('jobs/index', compact(
+            'job',
+            'similarJobs',
+        ));
     }
 
     /**
