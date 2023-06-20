@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\JobListController;
+use App\Http\Controllers\JobsController;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
@@ -23,12 +25,17 @@ Route::get('/jobs', [JobListController::class, 'index'])->name('jobs.index');
 //! slug = link of the job name
 Route::get('/jobs/{job:slug}', [JobListController::class, 'show'])->name('jobs.show');
 
+//Web Page
+Route::get('page/{page:slug}', [PageController::class, 'show'])->name('page.details');
+
+
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
     'verified'
-])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    ])->group(function () {
+        
+        Route::get('/dashboard', function () { return view('dashboard'); })->name('dashboard');   
+        Route::get('/myjob', [JobsController::class , 'index'])->name('');
+
 });

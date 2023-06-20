@@ -2,20 +2,16 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Job;
 use Illuminate\Http\Request;
 
-class WelcomeController extends Controller
+class JobsController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //$joblist = Job::all();
-        $categoryList = Category::take(4)->inRandomOrder()->get(['name', 'slug' , 'image']);
-        return view('welcome', compact ('categoryList'));
+        //
     }
 
     /**
@@ -37,22 +33,15 @@ class WelcomeController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Job $job)
+    public function show(string $id)
     {
-        $categories = $job->categories;
-        foreach ($categories as $category) {
-            $similarJobs = $category->jobs->shuffle()->take(4);
-        }
-        return view('jobs/index', compact(
-            'job',
-            'similarJobs',
-        ));
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Job $job)
+    public function edit(string $id)
     {
         //
     }
@@ -60,7 +49,7 @@ class WelcomeController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Job $job)
+    public function update(Request $request, string $id)
     {
         //
     }
@@ -68,7 +57,7 @@ class WelcomeController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Job $job)
+    public function destroy(string $id)
     {
         //
     }

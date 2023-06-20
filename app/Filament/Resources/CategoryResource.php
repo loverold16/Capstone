@@ -46,6 +46,7 @@ class CategoryResource extends Resource
                     ->autofocus()
                     ->unique()
                     ->required(),
+                Forms\Components\FileUpload::make('image'),
                 Forms\Components\TextInput::make('slug')
                     ->disabled()
                     ->required(),
@@ -60,9 +61,8 @@ class CategoryResource extends Resource
     {
         return $table
             ->columns([
+                Tables\Columns\ImageColumn::make('image'),
                 Tables\Columns\TextColumn::make('name')->sortable(),
-                Tables\Columns\TextColumn::make('slug'),
-                Tables\Columns\TextColumn::make('category_code'),
                 Tables\Columns\TextColumn::make('created_at')
                     ->dateTime('m-D-y')
                     ->sortable(),

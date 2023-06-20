@@ -21,7 +21,7 @@
 </head>
 
 <body class="leading-normal tracking-normal text-white gradient" style="font-family: 'figtree', sans-serif;">
-    <x-navbararea />
+    @include('layouts.navigation')
     <div class="font-sans text-gray-900 dark:text-gray-100 antialiased">
         {{ $slot }}
     </div>
@@ -46,7 +46,7 @@
                 navaction.classList.remove("bg-white");
                 navaction.classList.add("gradient");
                 navaction.classList.remove("text-gray-800");
-                navaction.classList.add("text-white");
+                navaction.classList.add("text-black");
                 //Use to switch toggleColour colours
                 for (var i = 0; i < toToggle.length; i++) {
                     toToggle[i].classList.add("text-gray-800");
@@ -63,7 +63,7 @@
                 navaction.classList.add("text-gray-800");
                 //Use to switch toggleColour colours
                 for (var i = 0; i < toToggle.length; i++) {
-                    toToggle[i].classList.add("text-white");
+                    toToggle[i].classList.add("text-black");
                     toToggle[i].classList.remove("text-gray-800");
                 }
 

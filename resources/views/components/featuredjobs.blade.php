@@ -1,13 +1,11 @@
 <section class="bg-white border-b py-8">
     <div class="flex flex-wrap pt-4 pb-12 mx-auto sm:container">
-        
         <div class="mb-4">
             <h1 class="my-2 text-2xl font-bold leading-tight text-gray-800">
                 Skill List
             </h1>
             <div class="h-1 gradient w-64 opacity-25 my-0 py-0 rounded-t"></div>
         </div>
-
         <div class="divide-y divide-slate-100 w-full">
             <nav class="py-4 px-6 text-sm font-medium">
                 <ul class="flex space-x-3">
@@ -19,10 +17,10 @@
             </nav>
             <ul class="divide-y divide-slate-100">
                 @foreach ($featuredjobList as $job)
-                    <li class="bg-purple-500 rounded">
+                    <li class="bg-gray-300 rounded">
                         <article class="flex items-start space-x-6 p-6">
-                            <img src="{{ asset( 'assets/' .  $job->image) }}" alt="{{ $job->name }}" width="20%"
-                             class="flex-none rounded-md bg-slate-100" />
+                            <img src="{{ asset('storage/' . $job->image) }}" alt="{{ $job->name }}" width="20%"
+                                class="flex-none rounded-md bg-slate-100" />
                             <div class="min-w-0 relative flex-auto">
                                 <h2 class="font-semibold text-slate-900 truncate pr-20">{{ $job->name }}</h2>
                                 <dl class="mt-2 flex flex-wrap text-sm leading-6 font-medium">
