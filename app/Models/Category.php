@@ -13,6 +13,7 @@ class Category extends Model
         'name',
         'slug',
         'category_code',
+        'image'
     ];
     /**
      * The roles that belong to the Category

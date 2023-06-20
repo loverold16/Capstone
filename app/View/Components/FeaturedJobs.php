@@ -22,7 +22,7 @@ class FeaturedJobs extends Component
      */
     public function render(): View|Closure|string
     {
-        $featuredjobList = Job::where('image', '!=', 'jobs/default.png')->take(6)->inRandomOrder()->get(['name', 'slug', 'price', 'description',  'image']);
+        $featuredjobList = Job::where('image', '!=', 'jobs/default.png')->take(10)->inRandomOrder()->get(['name', 'slug', 'price', 'description',  'image']);
         return view('components.featuredjobs', compact ('featuredjobList'));
     }
 
