@@ -5,7 +5,7 @@
     @foreach ($menuItems as $menuItem)
         @if ($menuItem->role === null || $menuItem->role === Auth::user()->role)
             <!-- Navigation Links -->
-            <x-nav-link href="{{ $menuItem->title }}">
+            <x-nav-link href="{{ $menuItem->url }}">
                 {{ __($menuItem->title) }}
             </x-nav-link>
             @if ($menuItem->children->count() > 0)
@@ -16,7 +16,6 @@
                 @endforeach
             @endif
         @endif
-        {{ $menuItems->role }}
     @endforeach
     
 </div>

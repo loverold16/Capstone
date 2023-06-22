@@ -21,7 +21,7 @@ class Menu extends Component
         $this->menuItems = MenuItem::with('children')
             ->where(function ($query) use ($roles) {
                 $query->whereNull('parent_id') // Include menu items with no specific role requirement
-                    ->orWhere('parent_id', $roles->id); // Include menu items with a specific role requirement matching the user's role
+                    ->orWhere('parent_id', $roles); // Include menu items with a specific role requirement matching the user's role
             })
             ->whereNull('parent_id')
             ->get();
