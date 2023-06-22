@@ -16,8 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('slug');
             $table->string('category_code');
-            $table->integer('created_by')->default(0);
-            $table->integer('modified_by')->default(0);
+            $table->string('image')->default('default.jpg');
             $table->timestamps();
         });
     }

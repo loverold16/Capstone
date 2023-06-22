@@ -15,6 +15,7 @@ class Job extends Model
         'slug',
         'details',
         'price',
+        'is_featured',
         'job_code',
         'description',
         'image',

@@ -49,10 +49,6 @@ class RolesAndPermissionsSeeder extends Seeder
         $adminPermission2 = Permission::create(['name' => 'update: admin']);
 
         // CREATE ROLES
-        $userRole = Role::create(['name' => 'user'])->syncPermissions([
-            $miscPermission,
-        ]);
-
         $superAdminRole = Role::create(['name' => 'super-admin'])->syncPermissions([
             $userPermission1,
             $userPermission2,
@@ -87,14 +83,16 @@ class RolesAndPermissionsSeeder extends Seeder
             $adminPermission2,
             $userPermission1,
         ]);
-        $clientRole = Role::create(['name' => 'client'])->syncPermissions([
-            $userPermission2,
-            $rolePermission2,
-            $permission2,
-            $adminPermission1,
-        ]);
         $developerRole = Role::create(['name' => 'developer'])->syncPermissions([
             $adminPermission1,
+        ]);
+
+        $userRole = Role::create(['name' => 'user'])->syncPermissions([
+            $miscPermission,
+        ]);
+
+        $clientRole = Role::create(['name' => 'client'])->syncPermissions([
+            $miscPermission,
         ]);
 
         // CREATE ADMINS & USERS
@@ -117,15 +115,6 @@ class RolesAndPermissionsSeeder extends Seeder
         ])->assignRole($adminRole);
 
         User::create([
-            'name' => 'client',
-            'is_admin' => 1,
-            'email' => 'client@admin.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('password'),
-            'remember_token' => Str::random(10),
-        ])->assignRole($clientRole);
-
-        User::create([
             'name' => 'developer',
             'is_admin' => 1,
             'email' => 'developer@admin.com',
@@ -134,17 +123,49 @@ class RolesAndPermissionsSeeder extends Seeder
             'remember_token' => Str::random(10),
         ])->assignRole($developerRole);
 
+        //Sample 5 Users
 
-        for ($i = 1; $i < 10; $i++) {
-            //Job Seekers = users
-            User::create([
-                'name' => 'Test ' . $i,
-                'is_admin' => 0,
-                'email' => 'User' . $i . '@user.com',
-                'email_verified_at' => now(),
-                'password' => Hash::make('password'), // password
-                'remember_token' => Str::random(10),
-            ])->assignRole($userRole);
-        }
+        User::create([
+            'name' => 'Andrew Falsado',
+            'is_admin' => 0,
+            'email' => 'andrew@user.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($clientRole);
+        User::create([
+            'name' => 'Francis De Leon',
+            'is_admin' => 0,
+            'email' => 'francis@user.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($userRole);
+        User::create([
+            'name' => 'Jerold Cuico',
+            'is_admin' => 0,
+            'email' => 'jerold@user.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($userRole);
+        User::create([
+            'name' => 'Lyka Saavedra',
+            'is_admin' => 0,
+            'email' => 'lyka@user.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($userRole);
+        User::create([
+            'name' => 'Arjohn Lopez',
+            'is_admin' => 0,
+            'email' => 'arjohn@user.com',
+            'email_verified_at' => now(),
+            'password' => Hash::make('password'),
+            'remember_token' => Str::random(10),
+        ])->assignRole($userRole);
+
+       
     }
 }
